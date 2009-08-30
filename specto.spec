@@ -25,7 +25,6 @@ Requires:	python-dbus
 Requires:	python-notify
 Requires:	xdg-utils
 
-
 %description
 
 Specto is a desktop application that will watch configurable events 
@@ -37,6 +36,26 @@ or an image, etc), and notify you when there is activity
 (otherwise, Specto will just stay out of the way).
 This changes the way you work, because you can be informed 
 of events instead of having to look out for them.
+
+%files -f %{name}.lang
+%defattr(-,root,root,-)
+%doc AUTHORS COPYING ChangeLog VERSION
+%{_bindir}/%{name}
+%dir %{py_puresitedir}/spectlib
+%{py_puresitedir}/spectlib/*.py
+%dir %{py_puresitedir}/spectlib/plugins
+%{py_puresitedir}/spectlib/plugins/*.py
+%dir %{py_puresitedir}/spectlib/tools
+%{py_puresitedir}/spectlib/tools/*.py
+%{py_puresitedir}/%{name}-*.egg-info
+%{_datadir}/applications/%{name}.desktop
+%{_sysconfdir}/xdg/autostart/%{name}.desktop
+%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/glade
+%{_datadir}/%{name}/icons
+
+#--------------------------------------------------------------------
 
 %prep
 %setup -q
@@ -60,22 +79,3 @@ EOF
 
 %clean
 %__rm -rf %{buildroot}
-
-%files -f %{name}.lang
-%defattr(-,root,root,-)
-%doc AUTHORS COPYING ChangeLog VERSION
-%{_bindir}/%{name}
-%dir %{py_puresitedir}/spectlib
-%{py_puresitedir}/spectlib/*.py
-%dir %{py_puresitedir}/spectlib/plugins
-%{py_puresitedir}/spectlib/plugins/*.py
-%dir %{py_puresitedir}/spectlib/tools
-%{py_puresitedir}/spectlib/tools/*.py
-%{py_puresitedir}/%{name}-*.egg-info
-%{_datadir}/applications/%{name}.desktop
-%{_sysconfdir}/xdg/autostart/%{name}.desktop
-%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
-%dir %{_datadir}/%{name}
-%{_datadir}/%{name}/glade
-%{_datadir}/%{name}/icons
-
