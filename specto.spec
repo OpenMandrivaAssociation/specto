@@ -1,13 +1,12 @@
 Name:		specto
 Version:	0.3.1
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	An desktop application that will watch configurable events
 Group:		Networking/Other 
 License:	GPLv2+
 URL:		http://specto.sourceforge.net/
 Source0:	http://specto.googlecode.com/files/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildArch:	noarch
 
 %py_requires -d
 
