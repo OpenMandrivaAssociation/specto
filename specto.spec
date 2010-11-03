@@ -1,6 +1,6 @@
 Name:		specto
 Version:	0.3.1
-Release:	%mkrel 3
+Release:	%mkrel 4
 Summary:	An desktop application that will watch configurable events
 Group:		Networking/Other 
 License:	GPLv2+
@@ -8,7 +8,7 @@ URL:		http://specto.sourceforge.net/
 Source0:	http://specto.googlecode.com/files/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
-%py_requires -d
+BuildRequires:	python-devel
 
 Requires:	bzr
 Requires:	librsvg2
@@ -46,7 +46,7 @@ of events instead of having to look out for them.
 %{py_puresitedir}/spectlib/plugins/*.py
 %dir %{py_puresitedir}/spectlib/tools
 %{py_puresitedir}/spectlib/tools/*.py
-%{py_puresitedir}/%{name}-*.egg-info
+%{py_puresitedir}/%{name}-py%{pyver}.egg-info
 %{_datadir}/applications/%{name}.desktop
 %{_sysconfdir}/xdg/autostart/%{name}.desktop
 %{_iconsdir}/hicolor/scalable/apps/%{name}.svg
