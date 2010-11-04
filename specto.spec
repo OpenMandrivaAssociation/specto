@@ -46,7 +46,7 @@ of events instead of having to look out for them.
 %{py_puresitedir}/spectlib/plugins/*.py
 %dir %{py_puresitedir}/spectlib/tools
 %{py_puresitedir}/spectlib/tools/*.py
-%{py_puresitedir}/%{name}-py%{pyver}.egg-info
+%{py_puresitedir}/%{name}-%{version}-py%{pyver}.egg-info
 %{_datadir}/applications/%{name}.desktop
 %{_sysconfdir}/xdg/autostart/%{name}.desktop
 %{_iconsdir}/hicolor/scalable/apps/%{name}.svg
