@@ -1,23 +1,21 @@
 Name:		specto
-Version:	0.3.1
-Release:	%mkrel 4
+Version:	0.4.1
+Release:	1
 Summary:	An desktop application that will watch configurable events
 Group:		Networking/Other 
 License:	GPLv2+
-URL:		http://specto.sourceforge.net/
+URL:		http://specto.sourceforge.net
 Source0:	http://specto.googlecode.com/files/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires:	python-devel
+BuildRequires:	intltool
 
-Requires:	bzr
 Requires:	librsvg2
 Requires:	%{mklibname gnome-keyring0}
 Requires:	gnome-python
 Requires:	gnome-python-extras
 Requires:	gnome-python-gconf
 Requires:	pygtk2 >= 2.10
-Requires:	pygtk2.0-libglade
 Requires:	python-numpy
 Requires:	python-libxml2
 Requires:	python-dbus
@@ -36,34 +34,19 @@ or an image, etc), and notify you when there is activity
 This changes the way you work, because you can be informed 
 of events instead of having to look out for them.
 
-%files -f %{name}.lang
-%defattr(-,root,root,-)
-%doc AUTHORS COPYING ChangeLog VERSION
-%{_bindir}/%{name}
-%dir %{py_puresitedir}/spectlib
-%{py_puresitedir}/spectlib/*.py
-%dir %{py_puresitedir}/spectlib/plugins
-%{py_puresitedir}/spectlib/plugins/*.py
-%dir %{py_puresitedir}/spectlib/tools
-%{py_puresitedir}/spectlib/tools/*.py
-%{py_puresitedir}/%{name}-%{version}-py%{pyver}.egg-info
-%{_datadir}/applications/%{name}.desktop
-%{_sysconfdir}/xdg/autostart/%{name}.desktop
-%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
-%dir %{_datadir}/%{name}
-%{_datadir}/%{name}/glade
-%{_datadir}/%{name}/icons
-
-#--------------------------------------------------------------------
 
 %prep
 %setup -q
 
+%build
+%{__python} setup.py build
+%__rm -f data/icons/*.~?~ data/icons/scalable/*.~?~
+
+
 %install
 %__rm -rf %{buildroot}
-%{__python} setup.py install --root %{buildroot} --no-compile
+%{__python} setup.py install --root %{buildroot}
 
-%__mv data/doc/{AUTHORS,ChangeLog,VERSION,COPYING} .
 %__rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %__install -d %{buildroot}%{_sysconfdir}/xdg/autostart
 %__cp %{buildroot}%{_datadir}/applications/%{name}.desktop %{buildroot}%{_sysconfdir}/xdg/autostart/%{name}.desktop
@@ -75,6 +58,21 @@ EOF
 
 %find_lang %{name}
 
+%files -f %{name}.lang
+%doc AUTHORS COPYING README
+%{_bindir}/%{name}
+%dir %{py_puresitedir}/spectlib
+%{py_puresitedir}/spectlib/*.py
+%dir %{py_puresitedir}/spectlib/plugins
+%{py_puresitedir}/spectlib/plugins/*.py
+%dir %{py_puresitedir}/spectlib/tools
+%{py_puresitedir}/spectlib/tools/*.py
+%{py_puresitedir}/%{name}-%{version}-py*.egg-info
+%{_datadir}/applications/%{name}.desktop
+%{_sysconfdir}/xdg/autostart/%{name}.desktop
+%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
+%{_datadir}/indicators/messages/applications/%{name}
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/icons
+%{_datadir}/%{name}/uis
 
-%clean
-%__rm -rf %{buildroot}
