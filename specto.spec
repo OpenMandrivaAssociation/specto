@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name:		specto
 Version:	0.4.1
 Release:	1
@@ -44,7 +46,6 @@ of events instead of having to look out for them.
 
 
 %install
-%__rm -rf %{buildroot}
 %{__python} setup.py install --root %{buildroot}
 
 %__rm -rf %{buildroot}%{_datadir}/doc/%{name}
@@ -75,33 +76,3 @@ EOF
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/icons
 %{_datadir}/%{name}/uis
-
-
-
-%changelog
-* Sun May 20 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.4.1-1
-+ Revision: 799740
-- version update 0.4.1
-
-* Thu Nov 04 2010 Luc Menut <lmenut@mandriva.org> 0.3.1-4mdv2011.0
-+ Revision: 593471
-- fix file list (.egg-info filename)
-- rebuild for python 2.7
-- drop %%py_requires macro
-- use %%pyver macro for .egg-info file
-
-* Tue Jun 01 2010 Luc Menut <lmenut@mandriva.org> 0.3.1-3mdv2010.1
-+ Revision: 546869
-- can't be noarch because of libgnome-keyring requirement
-
-* Tue Jun 01 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.1-2mdv2010.1
-+ Revision: 546851
-- rebuild for wrong requires in the package in i586 repo
-
-* Sun Aug 30 2009 Nicolas Lécureuil <nlecureuil@mandriva.com> 0.3.1-1mdv2010.0
-+ Revision: 422581
-- change layout
-
-  + Luc Menut <lmenut@mandriva.org>
-    - import specto
-
