@@ -2,7 +2,7 @@
 
 Name:		specto
 Version:	0.4.1
-Release:	1
+Release:	2
 Summary:	An desktop application that will watch configurable events
 Group:		Networking/Other 
 License:	GPLv2+
