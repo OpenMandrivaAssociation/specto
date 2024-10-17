@@ -6,7 +6,7 @@ Release:	2
 Summary:	An desktop application that will watch configurable events
 Group:		Networking/Other 
 License:	GPLv2+
-URL:		http://specto.sourceforge.net
+URL:		https://specto.sourceforge.net
 Source0:	http://specto.googlecode.com/files/%{name}-%{version}.tar.gz
 
 BuildRequires:	python-devel
